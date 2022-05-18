@@ -12,7 +12,7 @@ The objective of this workshop is practical: participants will develop and execu
 
 **Special thanks**
 
-This course is a remix version of the workshop that I co-taught with Nick Kuipers (Berkeley PhD; currently a postdoc at Stanford) at Berkeley in 2020.
+This course is a remix version of the workshop that I co-taught with Nick Kuipers (Berkeley PhD; currently a postdoc at Stanford) at Berkeley in 2020. I also thank Justin Ho (Academia Sinica) for sharing his teaching materials on the Twitter academic API co-authored with Christopher Barrie (Edinburgh).  
 
 ![](https://i.creativecommons.org/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
