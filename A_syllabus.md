@@ -55,39 +55,39 @@ See [this guideline](https://github.com/jaeyk/PS239T/blob/master/B_Install.md) f
 
 ### May 19, 2022: Why digital trace data? & Automating data collection workflow
 
-    - Description: introduction to the tidyverse; discussion of efficient and reproducible ways to collect and wrangle data
-    - R Packages: [dplyr](https://dplyr.tidyverse.org/), [purrr](https://purrr.tidyverse.org/)
-        - Kim and Ng, [Teaching Computational Social Science for All](https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/teaching-computational-social-science-for-all/66EAB886BCF21C647E2387051D6A9BEF)  
+- Description: introduction to the tidyverse; discussion of efficient and reproducible ways to collect and wrangle data
+- R Packages: [dplyr](https://dplyr.tidyverse.org/), [purrr](https://purrr.tidyverse.org/)
+- Kim and Ng, [Teaching Computational Social Science for All](https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/teaching-computational-social-science-for-all/66EAB886BCF21C647E2387051D6A9BEF)  
 
 ### May 20, 2022: Social media parsing 
 
-    - Command-line tool: [twarc](https://github.com/DocNow/twarc)
-        - [Installation guideline](https://scholarslab.github.io/learn-twarc/05-install-twarc.html) 
-    - R packages: 
-        - RESTful API: [tweetscores](https://github.com/pablobarbera/twitter_ideology/tree/master/pkg/tweetscores), [twitteR](https://cran.r-project.org/web/packages/twitteR/twitteR.pdf), [rtweet](https://github.com/ropensci/rtweet)
-        - Streaming API: [streamR](https://github.com/pablobarbera/streamR)
-        - Parsing: [tidyjson](https://cran.r-project.org/web/packages/tidyjson/vignettes/introduction-to-tidyjson.html), [tidytweetjson](https://github.com/jaeyk/tidytweetjson)
-    - References:
-        - [Pablo Barbara](https://github.com/pablobarbera), [LSE Social Media Workshop](http://pablobarbera.com/social-media-workshop/social-media-slides.pdf)
-        - Steinert-Threlkeld, [2020 APSA Short Course Generating Event Data From Social Media](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia)
-        - Kim, [Large-scale Twitter Analysis on COVID-19 and Anti-Asian Climate](https://t.co/4Axd0gEQns) ([GitHub](https://github.com/jaeyk/covid19antiasian))
+- Command-line tool: [twarc](https://github.com/DocNow/twarc)
+- [Installation guideline](https://scholarslab.github.io/learn-twarc/05-install-twarc.html) 
+- R packages: 
+- RESTful API: [tweetscores](https://github.com/pablobarbera/twitter_ideology/tree/master/pkg/tweetscores), [twitteR](https://cran.r-project.org/web/packages/twitteR/twitteR.pdf), [rtweet](https://github.com/ropensci/rtweet)
+- Streaming API: [streamR](https://github.com/pablobarbera/streamR)
+- Parsing: [tidyjson](https://cran.r-project.org/web/packages/tidyjson/vignettes/introduction-to-tidyjson.html), [tidytweetjson](https://github.com/jaeyk/tidytweetjson)
+- References:
+- [Pablo Barbara](https://github.com/pablobarbera), [LSE Social Media Workshop](http://pablobarbera.com/social-media-workshop/social-media-slides.pdf)
+- Steinert-Threlkeld, [2020 APSA Short Course Generating Event Data From Social Media](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia)
+- Kim, [Large-scale Twitter Analysis on COVID-19 and Anti-Asian Climate](https://t.co/4Axd0gEQns) ([GitHub](https://github.com/jaeyk/covid19antiasian))
     
 ### May 21, 2022: PDF parsing 
 
-    - Description: introduction to techniques of pdf-scraping; where to look for documents; how to know what to pre-process by hand; identifying recurring patterns in text to exploit for data wrangling; parallel processing
-    - R Packages: tesseract, magick, zoo, parallel, pdftools
-    - References:
-        - Mock, [Bear and pdftools](https://themockup.blog/posts/2020-04-03-beer-and-pdftools-a-vignette/)
-        - Vaughan, [Tidying Excel cash flow spreadsheets using R](https://blog.davisvaughan.com/2018/02/16/tidying-excel-cash-flow-spreadsheets-in-r/)
+- Description: introduction to techniques of pdf-scraping; where to look for documents; how to know what to pre-process by hand; identifying recurring patterns in text to exploit for data wrangling; parallel processing
+- R Packages: tesseract, magick, zoo, parallel, pdftools
+- References:
+- Mock, [Bear and pdftools](https://themockup.blog/posts/2020-04-03-beer-and-pdftools-a-vignette/)
+- Vaughan, [Tidying Excel cash flow spreadsheets using R](https://blog.davisvaughan.com/2018/02/16/tidying-excel-cash-flow-spreadsheets-in-r/)
 
 ### May 22, 2022: Web scraping 
 
-    - Description: introduction to techniques of web-scraping; identifying and exploiting underlying database structures; knowing when to quit
-    - R Packages: rvest, jsonlite, zoo, xml, [ralger](https://github.com/feddelegrand7/ralger)
-    - Chrome plugin: SelectorGadget
-    - References:
-        - Terman, 3I: Web Scraping and Data Management in R ([GitHub](https://github.com/rochelleterman/ESS-webscraping))
-        - Vaughan, [Which RStudio blog posts “pleased” Hadley? A tidytext + web scraping analysis](https://blog.davisvaughan.com/2017/08/16/hadley-pleased/)
+- Description: introduction to techniques of web-scraping; identifying and exploiting underlying database structures; knowing when to quit
+- R Packages: rvest, jsonlite, zoo, xml, [ralger](https://github.com/feddelegrand7/ralger)
+- Chrome plugin: SelectorGadget
+- References:
+- Terman, 3I: Web Scraping and Data Management in R ([GitHub](https://github.com/rochelleterman/ESS-webscraping))
+- Vaughan, [Which RStudio blog posts “pleased” Hadley? A tidytext + web scraping analysis](https://blog.davisvaughan.com/2017/08/16/hadley-pleased/)
 
 ## Special thanks 
 
