@@ -72,6 +72,7 @@ For instance, in many data science applications, linear algebra-based computatio
 ```{r}
 # Install packages 
 if (!require("pacman")) install.packages("pacman")
+
 pacman::p_load(xml2, 
                rvest, 
                tidyverse,
@@ -80,8 +81,6 @@ pacman::p_load(xml2,
 
 # Citation information of Behind the Mule (1994) written by Michael Dawson 
 document <- xml2::read_html("https://scholar.google.com/scholar?hl=en&as_sdt=2005&sciodt=0%2C5&cites=8941738289420139866&scipsc=")
-
-document
 ```
 
 ## 2. Define target elements in the single file and extract them 
@@ -102,6 +101,7 @@ doc <- document %>%
 
 readr::parse_number(doc[2])
 ```
+
 ## 3. Create a list of files (in this case URLs) to parse
 
 ```{r}
@@ -126,7 +126,10 @@ url_list <- map(1:3, create_url)
 
 # two arguments - map2() 
 # 3 and more than 3 arguments - pmap()
+
+url_list
 ```
+
 - Why `purrr:map()` is awesome. 
 
 ![Figure 5. How map() works.](https://d33wubrfki0l68.cloudfront.net/f0494d020aa517ae7b1011cea4c4a9f21702df8b/2577b/diagrams/functionals/map.png)
@@ -140,12 +143,19 @@ url_list <- map(1:3, create_url)
 - Compare the following three examples. 
 
 ```{r}
-
 df <- tibble("a" = -99,
              "b" = -99,
              "c" = -99,
              "d" = -99)
-             
+
+df
+```
+
+```{r}
+df$a == -99
+```
+
+```{r}
 # Bad
 df$a[df$a == -99] <- NA
 df$b[df$b == -99] <- NA
@@ -164,7 +174,9 @@ df$c <- fix_missing(df$c)
 df$d <- fix_missing(df$d)
 
 # Good 
-df <- map_df(df, fix_missing)
+df <- map(.x = df, 
+          .f = fix_missing)
+
 ```
 
 - Okay then how about for loop?
@@ -191,6 +203,7 @@ out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)
 toc()
 
 ```
+
 - In short, map() is more readable, faster, and easily extensive with other data science tasks using %>%. 
 
 - Also, it's easy to include make your function run slowly (to reduce the burden on a server) using `purrr`. 

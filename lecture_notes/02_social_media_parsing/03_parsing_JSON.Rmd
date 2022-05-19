@@ -61,7 +61,7 @@ $ split -100 search.jsonl
 $ gsplit -100 search.jsonl
 ```
 
--   After that, you will see several files appeared in the directory. Each of these files should have 100 tweets or fewer. All of these file names **should start with "x", as in "xaa".**
+-   After that, you will see several files appear in the directory. Each of these files should have 100 tweets or fewer. All of these file names **should start with "x", as in "xaa".**
 
 Step 2: Apply the parsing function to each chunk and pull all of these chunks together.
 
