@@ -1,0 +1,150 @@
+---
+title: "PDF Parsing"
+author: "Jae Yeon Kim"
+output:
+  html_document:
+    df_print: paged
+    number_sections: yes
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+---
+
+The code was adapted from [here](https://themockup.blog/posts/2020-04-03-beer-and-pdftools-a-vignette/) and [here](https://crimebythenumbers.com/scrape-table.html)
+
+# Objectives 
+
+Input: pdf files (high quality - `pdftools::pdf_text()`, low quality - `pdftools::pdf_ocr_text()`)
+
+Output: tidy dataframe
+
+# Install and load pkgs 
+
+`pdftools` pkg has dependencies: https://github.com/ropensci/pdftools#readme
+
+```{r}
+if(!require(pacman)) install.packages("pacman")
+
+pacman::p_load(tesseract, magick, zoo, parallel, pdftools, naniar, tidyverse, here, glue, purrr)
+```
+
+# Load data 
+
+```{r}
+# target data: https://github.com/jacobkap/crimebythenumbers/blob/master/data/usbp_stats_fy2017_sector_profile.pdf
+
+download.file("https://github.com/jacobkap/crimebythenumbers/raw/master/data/usbp_stats_fy2017_sector_profile.pdf", here("data/border.pdf"))
+
+border <- pdftools::pdf_text(here("data", "border.pdf"))
+
+border # oh, very ugly!! don't worry yet!
+```
+
+# Parse text 
+
+1. Turn into a character vector. 
+
+```{r}
+# line text 
+line_text <- border %>%
+    str_split("\n") %>%
+    unlist()
+```
+
+2. Determine the boundaries of the tables. 
+
+```{r}
+# build 3 tables 
+table_start <- str_which(line_text, "Miami")[1:3]
+table_end <- str_which(line_text, "Nationwide Total")[1:3]
+```
+
+3. Scrape the first table. 
+
+```{r}
+# set the boundary for the first table
+table_trimmed <- line_text[table_start[1]:table_end[1]] %>%
+    str_trim()
+
+# get the table structure
+df_trimmed <- table_trimmed %>%
+    str_split_fixed("\\s{2,}", # at least 2 spaces away 
+                    10) %>% # 10 columns 
+    as.data.frame()
+
+# rename columns
+names(df_trimmed) <- c("sector",
+                       "agent_staffing",
+                       "total_apprehensions",
+                       "other_than_mexican_apprehensions", 
+                       "marijuana_pounds",
+                       "cocaine_pounds",
+                       "accepted_prosecutions",
+                       "assaults",
+                       "rescues",
+                       "deaths")
+
+# clean the table
+df_trimmed <- naniar::replace_with_na_all(df_trimmed, condition = ~.x %in% c("N/A", "N/A ****"))
+```
+
+# Write function 
+
+```{r}
+scrape_table <- function(table_num, num_col, col_names) {
+    # set the boundary 
+    table_trimmed <- line_text[table_start[table_num]:table_end[table_num]] %>%
+        str_trim()
+
+    # get the table structure
+    df_trimmed <- table_trimmed %>%
+        str_split_fixed("\\s{2,}", # at least 2 spaces away 
+                        num_col) %>% # 10 columns 
+        as.data.frame()
+
+    # rename columns
+    names(df_trimmed) <- col_names
+
+    # clean the table
+    df_trimmed <- naniar::replace_with_na_all(df_trimmed, condition = ~.x %in% c("N/A", "N/A ****"))
+    
+    return(df_trimmed)
+}
+
+params <- list(table_num = 1:3,
+               num_col = c(10,6,4),
+               col_names = list(c("sector",
+                                       "agent_staffing",
+                                       "total_apprehensions",
+                                       "other_than_mexican_apprehensions", 
+                                       "marijuana_pounds",
+                                       "cocaine_pounds",
+                                       "accepted_prosecutions",
+                                       "assaults",
+                                       "rescues",
+                                       "deaths"),
+                                c("sector",
+                                       "accompanied_juveniles",
+                                       "unaccompanied_juveniles",
+                                       "total_juveniles", 
+                                       "total_adults",
+                                       "total_apprehensions"),
+                                c("sector",
+                                       "female",
+                                       "male",
+                                       "total_apprehensions")))
+```
+
+# Automate the scraping 
+
+```{r}
+out <- purrr::pmap(.l = params, .f = scrape_table)
+
+nums <- 1:3
+glue("tb{nums} <- out[[{nums}]]")
+
+tb1 <- out[[1]]
+tb2 <- out[[2]]
+tb3 <- out[[3]]
+```
