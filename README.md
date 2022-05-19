@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jaeyk/digital_data_collection_workshop/master?urlpath=rstudio)
+
 # Research Workshop on Computational Tools for Digital Data Collection
 
 * **Instructor(s)**: Jae Yeon Kim
