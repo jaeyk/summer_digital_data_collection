@@ -10,21 +10,21 @@ The objective of this workshop is practical: participants will develop and execu
 
 ## Logistics
 
-### Instructor
-
-<img src="https://jaeyk.github.io/profile.jpg" style="margin-right:8px;" align="left" width="150">
-
-Instructor: Dr. Jae Yeon Kim, Assistant Professor, KDI School of Public Policy and Management
-
-* E-mail: jaeyeonkim@kdis.ac.kr
-
 ### Time and Location
 
 Date: 5/19, 5/20, 5/26, 5/27 11 AM - 1 PM (KST)
 
 Location: Zoom
 
-All course materials will be posted on Github at https://github.com/jaeyk/digital_data_collection_workshop, including class notes, code demonstrations, sample data, and assignments.
+### Instructor
+
+<img src="https://jaeyk.github.io/profile.jpg" style="margin-right:4px;" align="left" width="120">
+
+Instructor: Dr. Jae Yeon Kim, Assistant Professor, KDI School of Public Policy and Management
+
+* E-mail: jaeyeonkim@kdis.ac.kr
+
+All course materials will be posted on Github at [https://github.com/jaeyk/digital_data_collection_workshop](https://github.com/jaeyk/summer_digital_data_collection), including class notes, code demonstrations, and **some** sample data.
 
 ### Accessibility
 
