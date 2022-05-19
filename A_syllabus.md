@@ -64,6 +64,7 @@ See [this guideline](https://github.com/jaeyk/PS239T/blob/master/B_Install.md) f
 - Command-line tool: [twarc](https://github.com/DocNow/twarc)
     - [Installation guideline](https://scholarslab.github.io/learn-twarc/05-install-twarc.html) 
 - R packages: 
+    - Academic Twitter API: [academictwitteR](https://cran.r-project.org/web/packages/academictwitteR/index.html)
     - RESTful API: [tweetscores](https://github.com/pablobarbera/twitter_ideology/tree/master/pkg/tweetscores), [twitteR](https://cran.r-project.org/web/packages/twitteR/twitteR.pdf), [rtweet](https://github.com/ropensci/rtweet)
     - Streaming API: [streamR](https://github.com/pablobarbera/streamR)
     - Parsing: [tidyjson](https://cran.r-project.org/web/packages/tidyjson/vignettes/introduction-to-tidyjson.html), [tidytweetjson](https://github.com/jaeyk/tidytweetjson)
