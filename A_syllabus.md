@@ -14,7 +14,7 @@ The objective of this workshop is practical: participants will develop and execu
 
 Date: 5/19, 5/20, 5/26, 5/27 11 AM - 1 PM (KST)
 
-Location: Zoom
+Location: Zoom (Institute of Politics, Korea University)
 
 ### Instructor
 
