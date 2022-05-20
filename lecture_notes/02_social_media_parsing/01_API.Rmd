@@ -76,13 +76,13 @@ This explanation draws on Pablo Barbara's [LSE social media workshop slides](htt
 
 > Twitter data is unique from data shared by most other social platforms because it reflects information that users *choose* to share publicly. Our API platform provides broad access to public Twitter data that users have chosen to share with the world. - Twitter Help Center
 
-    - What does this policy mean? If Twitter users don't share the locations of their tweets (e.g., GPS), you can't get collect them.
+- What does this policy mean? If Twitter users don't share the locations of their tweets (e.g., GPS), you can't get collect them.
 
-- Onre more thing: Academic Twitter API (yay!)
+- One more thing: Academic Twitter API (yay!)
 
 > “The Academic Research product track includes full-archive search, as well as increased access and other v2 endpoints and functionality designed to get more precise and complete data for analyzing the public conversation, at no cost for qualifying researchers. Since the Academic Research track includes specialized, greater levels of access, it is reserved solely for non-commercial use”.
 
-In short, more access to larger (more complete) Twitter data with more control. 
+In short, more access to larger (more complete) Twitter data with more control. Additional cool stuff: [annotations](https://developer.twitter.com/en/docs/twitter-api/annotations/overview) and [conversation ID](https://developer.twitter.com/en/docs/twitter-api/conversation-id).
 
 Justin Ho (Academia Sinica) and Christopher Barrie (Edinburgh) developed an R package named `academictitteR` for this new API: https://github.com/cjbarrie/academictwitteR 
 
@@ -145,8 +145,6 @@ tweetsblm <- get_all_tweets(
     file = here("data", "blmtweets.rds"),
     data_path = here("data"),
     n = 500)
-
-tweetsblm
 ```
 
 - Facebook API access has become much more constrained with [the exception of Social Science One](https://socialscience.one/blog/unprecedented-facebook-urls-dataset-now-available-research-through-social-science-one) since the 2016 U.S. election.
