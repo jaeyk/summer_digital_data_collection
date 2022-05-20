@@ -1,1 +1,3 @@
 libpoppler-cpp-dev
+libtesseract-dev 
+libleptonica-dev
