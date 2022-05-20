@@ -6,5 +6,12 @@ install.packages(c("pacman",
               	   "tictoc",
               	   "furrr",
                    "devtools",
-                   "tidyjson"
+                   "tidyjson",
+                   "academictwitteR",
+                   "ggthemes",
+                   "purrr",
+                   "here",
+                   "glue",
+                   "lubridate",
+                   "XML"
               	   )) 

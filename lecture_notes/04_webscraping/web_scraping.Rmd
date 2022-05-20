@@ -10,3 +10,240 @@ output:
   pdf_document:
     toc: yes
 ---
+
+# Objectives 
+
+- Learning the following workflow. 
+
+- Input: a character vector that contains a series of URLs
+
+- Output: a tidy dataframe
+
+# Install and load packages
+
+```{r}
+if (!require(pacman)) install.packages("pacman")
+
+pacman::p_load(rvest, jsonlite, zoo, XML, ralger, janitor,
+               webdriver,
+               webshot)
+
+# install.packages("remotes")
+remotes::install_github("rlesur/klippy")
+
+# activate klippy
+klippy::klippy()
+```
+
+# Static example 
+
+## Target 
+
+```{r}
+url_list <- c(
+  "https://en.wikipedia.org/wiki/University_of_California,_Berkeley",
+  "https://en.wikipedia.org/wiki/Stanford_University",
+  "https://en.wikipedia.org/wiki/Carnegie_Mellon_University",
+  "https://DLAB"
+)
+```
+
+## Step 1: Inspection 
+
+Examine the Berkeley website so that we could identify a node that indicates the school's motto. Then, if you're using Chrome, draw your interest elements, then `right click > inspect > copy full xpath.`
+
+```{r, eval = FALSE}
+url <- "https://en.wikipedia.org/wiki/University_of_California,_Berkeley"
+
+download.file(url, destfile = "scraped_page.html", quiet = TRUE)
+
+target <- read_html("scraped_page.html")
+
+# If you want character vector output
+target %>%
+  html_nodes(xpath = "/html/body/div[3]/div[3]/div[5]/div[1]/table[1]") %>%
+  html_text() 
+
+# If you want table output 
+target %>%
+  html_nodes(xpath = "/html/body/div[3]/div[3]/div[5]/div[1]/table[1]") %>%
+  html_table()
+```
+
+## Step 2: Write a function 
+
+I highly recommend writing your function working slowly by wrapping the function with [`slowly()`](https://purrr.tidyverse.org/reference/insistently.html).
+
+```{r}
+get_table_from_wiki <- function(url){
+  
+  download.file(url, destfile = "scraped_page.html", quiet = TRUE)
+  target <- read_html("scraped_page.html")
+  
+  table <- target %>%
+    html_nodes(xpath = "/html/body/div[3]/div[3]/div[5]/div[1]/table[1]") %>%
+    html_table() 
+  
+  return(table)
+}
+```
+
+## Step 3: Test
+
+```{r, eval = FALSE}
+get_table_from_wiki(url_list[[2]])
+```
+
+## Step 4: Automation 
+
+```{r, eval=FALSE}
+map(url_list, get_table_from_wiki)
+```
+
+## Step 5: Error handling 
+
+```{r, eval = FALSE}
+map(url_list, safely(get_table_from_wiki)) %>%
+  map("result") %>% 
+  # = map(function(x) x[["result"]]) = map(~.x[["name"]])
+  purrr::compact() # Remove empty elements
+```
+
+```{r, eval = FALSE}
+# If error occurred, "The URL is broken." will be stored in that element(s).
+out <- map(
+  url_list,
+  possibly(get_table_from_wiki,
+    otherwise = "The URL is broken."
+  )
+)
+
+df <- out[c(1,2,3)] 
+```
+
+# Additional exercise: dynamic example 
+
+## Identity website elments 
+
+The following code is adapted from here: https://slcladal.github.io/webcrawling.html
+
+```{r}
+# webshot::install_phantomjs()
+# setup 
+inst <- run_phantomjs()
+session <- Session$new(port = inst$port)
+# go to url 
+session$go("https://www.advancingjustice-atlanta.org/newslettersarchieve")
+# render page 
+source <- session$getSource()
+# html document
+html_doc <- read_html(source)
+```
+
+```{r}
+# text links 
+links <- html_doc %>%
+  html_nodes(xpath = "//div[@class='campaign']/a") %>%
+  html_attr(name = "href")
+
+# meta data 
+meta <- html_doc %>%
+  html_nodes(xpath = "//div[@class='campaign']") 
+
+meta2content <- function(meta) {
+
+  date_title <- meta %>%
+    html_text()
+
+  out <- date_title %>%
+    stringr::str_split(" - ") %>%
+    unlist()
+
+  date <- out[1] %>% lubridate::mdy()
+  title <- out[2]
+  
+  df <- data.frame(pub_date = date,
+                   pub_title = title)
+  
+  return(df)
+}
+
+meta_out <- purrr::map(meta, possibly(meta2content, otherwise = "Error"))
+
+meta_out <- meta_out %>%
+  reduce(bind_rows)
+
+# combine both of them
+meta_out$link <- links
+```
+
+## Extract the texts from the website 
+
+```{r}
+link2text <- function(link) {
+  
+  message(link)
+  
+  #link <- "https://us2.campaign-archive.com/?u=c07af679cb8d889c8f33cb996&id=f4ba67b48e"
+  text <- link %>%
+    read_html() %>%
+    html_nodes(xpath = "//table[@class='mcnTextBlock']") %>%
+    html_text(trim = T)
+  
+  if (is_empty(text)) {
+    
+    text <- link %>%
+      read_html() %>%
+      html_nodes(xpath = "//p") %>%
+      html_text(trim = T)
+
+    # remove the non-main texts 
+    text <- text[nchar(text) > 300]
+    
+    # remove the org explanation
+    text <- text[!startsWith(text, "About Asian Americans Advancing")]
+    
+    # combine these all 
+    text <- paste(text, collapse = ' ')
+    
+    # remove the line breaks  
+    text <- gsub("[\r\n]", "", text)
+    text <- gsub("[\r\t]", "", text)
+    
+    # remove any special characters 
+    text <- removePunctuation(text)
+    
+    df <- data.frame(url = link,
+                     msg = text)
+    
+  } else {
+    
+  # remove the non-main texts 
+  text <- text[nchar(text) > 300]
+  
+  # remove the org explanation
+  text <- text[!startsWith(text, "About Asian Americans Advancing")]
+  
+  # combine these all 
+  text <- paste(text, collapse = ' ')
+  
+  # remove the line breaks  
+  text <- gsub("[\r\n]", "", text)
+  text <- gsub("[\r\t]", "", text)
+  
+  # remove any special characters 
+  text <- removePunctuation(text)
+  
+  df <- data.frame(url = link,
+                   msg = text)
+  
+  }
+  
+  return(df)
+  
+}
+
+texts <- purrr::map_dfr(meta_out$link, link2text)
+names(meta_out) <- c("date", "title", "url")
+combined <- left_join(meta_out, texts)
+  

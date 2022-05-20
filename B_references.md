@@ -1,5 +1,6 @@
 
 ## Course websites 
+- [Introduing Novel Data at Scale](https://dell-research-harvard.github.io/blog.html) by Melissa Dell 
 - [LSE MY472 Data for Data Scientists](https://lse-my472.github.io/#1-introduction-to-data) by Kenneth Benoit and Milena Tsvetkova
 - [EC607 Data science for economists](https://github.com/uo-ec607/lectures#data-science-for-economists) by [Grant McDermott](https://grantmcdermott.com/) 
 - [Economics 425/525: Econometrics III ](https://github.com/edrubin/EC525S19) by [Ed Rubin](https://edrub.in/)
