@@ -13,5 +13,17 @@ install.packages(c("pacman",
                    "here",
                    "glue",
                    "lubridate",
-                   "XML"
+                   "XML",
+                   "tesseract", 
+                   "magick", 
+                   "zoo", 
+                   "parallel", 
+                   "pdftools", 
+                   "naniar",
+                   "jsonlite", 
+                   "XML", 
+                   "ralger", 
+                   "janitor",
+                   "webdriver",
+                   "webshot"
               	   )) 

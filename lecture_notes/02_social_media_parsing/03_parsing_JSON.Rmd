@@ -105,6 +105,10 @@ The [`tidyjson`](https://cran.r-project.org/web/packages/tidyjson/vignettes/intr
 -   toy example
 
 ```{r}
+worldbank[1]
+```
+
+```{r}
 
 # JSON collection; nested structure + keys and values
 worldbank[1]

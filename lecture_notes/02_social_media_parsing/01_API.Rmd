@@ -98,7 +98,7 @@ if (!require(pacman)) install.packages("pacman")
 pacman::p_load(academictwitteR, here, tidyverse, lubridate, ggthemes)
 
 # setup (authorization); you can find this info from developer.twitter.com
-#set_bearer()
+set_bearer()
 
 ############## Searching Tweets based on queries (hashtags) ##############
 
@@ -112,6 +112,10 @@ tweets <-
     n = 100, # upper limit 
   )
 
+head(tweets)
+```
+
+```{r}
 count_tweets <-
     count_all_tweets(
         query = "#BlackLivesMatter",
@@ -120,7 +124,9 @@ count_tweets <-
         bearer_token = get_bearer(),
         granularity = "hour",
         n = 500)
+```
 
+```{r}
 count_tweets <- count_tweets %>%
     mutate(date = lubridate::ymd_hms(start))
 
@@ -133,7 +139,9 @@ count_tweets %>%
          subtitle = "2020-01-01 - 2020-01-05",
          y = "Count",
          x = "Date")
+```
 
+```{r}
 ############## Searching Tweets based on user id ##############
 
 tweetsblm <- get_all_tweets(
