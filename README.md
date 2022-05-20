@@ -12,7 +12,8 @@ The focus of this workshop is on digital data collection using R. The workshop c
 
 The objective of this workshop is practical: participants will develop and execute data collections strategies in each of the three thematic modules, with the final deliverable being three complete and clean datasets. Ideally, I will expect participants involved in the workshop to identify resources---e.g., administrative databases, archival documents, social media accounts---that they wish to scrape.
 
->**Note**
+> **Note**
+> Special thanks to ... 
 
 This course is a remix version of the workshop that I co-taught with Nick Kuipers (Berkeley PhD; currently a postdoc at Stanford) at Berkeley in 2020. I also thank Justin Ho (Academia Sinica) for sharing his teaching materials on the Twitter academic API co-authored with Christopher Barrie (Edinburgh).  
 
