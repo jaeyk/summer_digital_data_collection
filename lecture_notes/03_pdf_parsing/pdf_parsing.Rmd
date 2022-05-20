@@ -148,3 +148,7 @@ tb1 <- out[[1]]
 tb2 <- out[[2]]
 tb3 <- out[[3]]
 ```
+
+# Next steps 
+
+- Melissa Dell (Harvard econ) et al, [Layout Parser](https://layout-parser.github.io/)
