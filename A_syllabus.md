@@ -51,7 +51,7 @@ See [this guideline](https://github.com/jaeyk/PS239T/blob/master/B_Install.md) f
 
 ## Course schedule 
 
-- To view the course contents interactively, please [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jaeyk/digital_data_collection_workshop/master?urlpath=rstudio). 
+- To view the course contents interactively, please [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jaeyk/summer_digital_data_collection/main?urlpath=rstudio) 
 
 ### May 19, 2022: Why digital trace data? & Automating data collection workflow
 
