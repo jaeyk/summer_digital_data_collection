@@ -4,7 +4,7 @@
 
 * **Instructor(s)**: Jae Yeon Kim
 * **Date**: 5/19, 5/20, 5/26, 5/27 11 AM - 1 PM (KST)
-* **Location**: Zoom
+* **Location**: Zoom (Institute of Politics, Korea University)
 
 **Description**
 
