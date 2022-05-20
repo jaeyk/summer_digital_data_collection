@@ -11,13 +11,15 @@ output:
     toc: yes
 ---
 
-The code was adapted from [here](https://themockup.blog/posts/2020-04-03-beer-and-pdftools-a-vignette/) and [here](https://crimebythenumbers.com/scrape-table.html)
+The code was adapted from [here](https://themockup.blog/posts/2020-04-03-beer-and-pdftools-a-vignette/) and [here](https://crimebythenumbers.com/scrape-table.html).
 
 # Objectives 
 
-Input: pdf files (high quality - `pdftools::pdf_text()`, low quality - `pdftools::pdf_ocr_text()`)
+- Learning the following workflow. 
 
-Output: tidy dataframe
+- Input: pdf files (high quality - `pdftools::pdf_text(),` low quality - `pdftools::pdf_ocr_text()`)
+
+- Output: tidy dataframe
 
 # Install and load pkgs 
 
